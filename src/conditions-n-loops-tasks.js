@@ -451,13 +451,13 @@ function rotateMatrix(matrix) {
 function sortByAsc(arr) {
   const newArr = arr;
   for (let n = arr.length - 1; n > 0; n -= 1) {
-    const curItem = arr[n];
-    let i = 0;
-    while (i < n && curItem < arr[i]) {
-      newArr[i] = arr[i];
-      i += 1;
+    for (let i = 0; i < n; i += 1) {
+      if (newArr[i] > newArr[i + 1]) {
+        const item = newArr[i];
+        newArr[i] = newArr[i + 1];
+        newArr[i + 1] = item;
+      }
     }
-    newArr[n] = curItem;
   }
   return newArr;
 }
