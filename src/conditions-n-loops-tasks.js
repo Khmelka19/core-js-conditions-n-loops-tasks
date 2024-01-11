@@ -450,16 +450,16 @@ function rotateMatrix(matrix) {
  */
 function sortByAsc(arr) {
   const newArr = arr;
-  for (let n = arr.length - 1; n > 0; n -= 1) {
-    for (let i = 0; i < n; i += 1) {
-      if (newArr[i] > newArr[i + 1]) {
-        const item = newArr[i];
-        newArr[i] = newArr[i + 1];
-        newArr[i + 1] = item;
-      }
+  for (let i = 1; i < arr.length; i += 1) {
+    const item = arr[i];
+    let j = i;
+    while (j > 0 && arr[j - 1] > item) {
+      newArr[j] = newArr[j - 1];
+      j -= 1;
     }
+    newArr[j] = item;
   }
-  return newArr;
+  return arr;
 }
 
 /**
@@ -550,7 +550,6 @@ function getNearestBigger(number) {
 
   const newArr = arr.splice(0, i);
   arr = arr.sort((a, b) => a - b);
-
   return Number([...newArr, ...arr].join(''));
 }
 
